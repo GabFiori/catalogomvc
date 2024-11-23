@@ -4,22 +4,20 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Faixa extends Model {
     static associate(models) {
-      Faixa.belongsTo(models.Disco, {
-        foreignKey: 'discoId',
-        as: 'disco'
+      // Associando faixa ao disco
+      this.belongsTo(models.Disco, {
+        foreignKey: 'disco_id',
+        as: 'disco',
       });
     }
   }
-  Faixa.init(
-    {
-      nome: DataTypes.STRING,
-      duracao: DataTypes.STRING,
-      discoId: DataTypes.INTEGER,
-    },
-    {
-      sequelize,
-      modelName: 'Faixa',
-    }
-  );
+  Faixa.init({
+    nome: DataTypes.STRING,
+    duracao: DataTypes.INTEGER,
+    disco_id: DataTypes.INTEGER // Chave estrangeira associando a faixa ao disco
+  }, {
+    sequelize,
+    modelName: 'Faixa',
+  });
   return Faixa;
 };

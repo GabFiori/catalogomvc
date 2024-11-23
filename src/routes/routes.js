@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const discoController = require("../controllers/discoController");
-const faixaController = require("../controllers/faixaController");
+const faixaController = require("../controllers/faixaController"); 
 
 const routes = Router();
 
@@ -9,13 +9,14 @@ routes.get("/", (req, res) => {
 });
 
 routes.post("/discos", discoController.create);
-routes.get("/discos", discoController.getAll);
-routes.get("/discos/:id", discoController.getById);
-routes.put("/discos/:id", discoController.update);
-routes.delete("/discos/:id", discoController.delete);
+routes.get("/discos", discoController.getAll); 
+routes.get("/discos/:id", discoController.getById); 
+routes.put("/discos/:id", discoController.update); 
+routes.delete("/discos/:id", discoController.delete); 
 
-routes.post("/discos/:discoId/faixas", faixaController.create); 
-routes.get("/discos/:discoId/faixas", faixaController.getAll); 
+routes.post("/faixas", faixaController.create); 
+routes.get("/faixas", faixaController.getAll); 
+routes.get("/faixas/:id", faixaController.getById); 
 routes.put("/faixas/:id", faixaController.update); 
 routes.delete("/faixas/:id", faixaController.delete); 
 
