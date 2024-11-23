@@ -9,5 +9,8 @@ routes.get("/", (req, res) => {
 
 routes.post("/discos", discoController.create); 
 routes.get("/discos", discoController.getAll); 
+routes.get("/discos/:id", discoController.getById); 
+routes.put("/discos/:id", discoController.update); 
+routes.delete("/discos/:id", discoController.delete); 
 
 module.exports = routes;
