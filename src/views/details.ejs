@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Disco</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Detalhes do Disco</h1>
+
+  <section>
+    <img src="<%= disco.capa %>" alt="<%= disco.titulo %>">
+    <h2><%= disco.titulo %></h2>
+    <p>Ano de Lançamento: <%= disco.anoLancamento %></p>
+  </section>
+
+  <!-- Lista de faixas -->
+  <section>
+    <h2>Faixas</h2>
+    <ul>
+      <% disco.faixas.forEach(faixa => { %>
+        <li><%= faixa.nome %> - <%= faixa.duracao %> minutos</li>
+      <% }) %>
+    </ul>
+
+    <!-- Formulário para adicionar uma nova faixa -->
+    <h3>Adicionar Nova Faixa</h3>
+    <form action="/faixas" method="POST">
+      <input type="text" name="nome" placeholder="Nome da Faixa" required>
+      <input type="text" name="duracao" placeholder="Duração (em minutos)" required>
+      <input type="hidden" name="disco_id" value="<%= disco.id %>">
+      <button type="submit">Adicionar Faixa</button>
+    </form>
+  </section>
+
+  <!-- Editar disco -->
+  <section>
+    <h2>Editar Disco</h2>
+    <form action="/discos/<%= disco.id %>" method="POST">
+        <form action="/discos/<%= disco.id %>" method="POST">
+            <input type="text" name="titulo" value="<%= disco.titulo %>" required>
+            <input type="number" name="anoLancamento" value="<%= disco.anoLancamento %>" required>
+            <input type="text" name="capa" value="<%= disco.capa %>" required>  <!-- Capa como string -->
+            <button type="submit">Salvar Alterações</button>
+        </form>
+
+  <!-- Excluir disco -->
+  <section>
+    <h2>Excluir Disco</h2>
+    <form action="/discos/<%= disco.id %>/delete" method="POST">
+      <button type="submit">Excluir</button>
+    </form>
+  </section>
+<button onclick="window.location.href='/discos'">Voltar para a Página Principal</button>
+</body>
+</html>

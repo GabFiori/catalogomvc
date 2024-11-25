@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Discos</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Catálogo de Discos</h1>
+
+  <!-- Formulário para adicionar um novo disco -->
+  <section>
+    <h2>Adicionar Novo Disco</h2>
+    <form action="/discos" method="POST">
+      <label for="titulo">Título:</label>
+      <input type="text" name="titulo" id="titulo" required>
+
+      <label for="anoLancamento">Ano de Lançamento:</label>
+      <input type="number" name="anoLancamento" id="anoLancamento" required>
+
+      <label for="capa">Capa (URL):</label>
+      <input type="text" name="capa" id="capa" required>
+
+      <button type="submit">Adicionar Disco</button>
+    </form>
+  </section>
+
+  <!-- Lista de discos -->
+  <section>
+    <h2>Discos Disponíveis</h2>
+    <div class="discos">
+      <% discos.forEach(disco => { %>
+        <div class="disco">
+          <img src="<%= disco.capa %>" alt="<%= disco.titulo %>" width="100">
+          <h3><%= disco.titulo %></h3>
+          <!-- Link para ver detalhes do disco -->
+          <a href="/discos/<%= disco.id %>">Ver Detalhes</a>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+</body>
+</html>
