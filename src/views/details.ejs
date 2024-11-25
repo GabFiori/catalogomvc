@@ -15,7 +15,6 @@
     <p>Ano de Lançamento: <%= disco.anoLancamento %></p>
   </section>
 
-  <!-- Lista de faixas -->
   <section>
     <h2>Faixas</h2>
     <ul>
@@ -24,7 +23,6 @@
       <% }) %>
     </ul>
 
-    <!-- Formulário para adicionar uma nova faixa -->
     <h3>Adicionar Nova Faixa</h3>
     <form action="/faixas" method="POST">
       <input type="text" name="nome" placeholder="Nome da Faixa" required>
@@ -34,18 +32,16 @@
     </form>
   </section>
 
-  <!-- Editar disco -->
   <section>
     <h2>Editar Disco</h2>
     <form action="/discos/<%= disco.id %>" method="POST">
         <form action="/discos/<%= disco.id %>" method="POST">
             <input type="text" name="titulo" value="<%= disco.titulo %>" required>
             <input type="number" name="anoLancamento" value="<%= disco.anoLancamento %>" required>
-            <input type="text" name="capa" value="<%= disco.capa %>" required>  <!-- Capa como string -->
+            <input type="text" name="capa" value="<%= disco.capa %>" required> 
             <button type="submit">Salvar Alterações</button>
         </form>
 
-  <!-- Excluir disco -->
   <section>
     <h2>Excluir Disco</h2>
     <form action="/discos/<%= disco.id %>/delete" method="POST">
