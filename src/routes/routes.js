@@ -11,8 +11,8 @@ routes.get("/discos/:id", discoController.getById);
 routes.post("/discos/:id", discoController.update);
 routes.post("/discos/:id/delete", discoController.delete);
 
-routes.post("/faixas", faixaController.create);  // Adicionar faixa
-routes.put("/faixas/:id", faixaController.update);  // Editar faixa
-routes.delete("/faixas/:id", faixaController.delete);  // Deletar faixa
+routes.post("/faixas", faixaController.create);  
+routes.put("/faixas/:id", faixaController.update); 
+routes.delete("/faixas/:id", faixaController.delete);  
 
 module.exports = routes;
