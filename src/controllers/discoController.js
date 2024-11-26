@@ -1,4 +1,4 @@
-const { Disco } = require("../models");
+const { Disco, Faixa } = require("../models");
 
 module.exports = {
   async create(req, res) {
@@ -6,21 +6,28 @@ module.exports = {
       const { titulo, anoLancamento, capa } = req.body;
 
       if (!titulo || !anoLancamento || !capa) {
-        return res.status(400).json({ error: "Todos os campos são obrigatórios." });
+        return res.status(400).send("Todos os campos obrigatórios devem ser preenchidos.");
       }
-
+      
       const disco = await Disco.create({ titulo, anoLancamento, capa });
-      return res.status(201).json(disco);
+
+      return res.redirect("/discos"); 
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ error: "Erro ao criar disco" });
+      return res.status(500).send("Erro ao criar disco.");
     }
   },
 
   async getAll(req, res) {
     try {
-      const discos = await Disco.findAll();
-      return res.status(200).json(discos);
+      const discos = await Disco.findAll({
+        include: {
+          model: Faixa,
+          as: 'faixas',
+        },
+      });
+  
+      return res.render("index", { discos });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ error: "Erro ao buscar discos" });
@@ -31,15 +38,18 @@ module.exports = {
     try {
       const { id } = req.params;
 
-      const disco = await Disco.findByPk(id);
+      const disco = await Disco.findByPk(id, {
+        include: { model: Faixa, as: "faixas" },
+      });
+
       if (!disco) {
-        return res.status(404).json({ error: "Disco não encontrado" });
+        return res.status(404).send("Disco não encontrado.");
       }
 
-      return res.status(200).json(disco);
+      return res.render("details", { disco });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ error: "Erro ao buscar disco" });
+      return res.status(500).send("Erro ao buscar disco.");
     }
   },
 
@@ -47,34 +57,47 @@ module.exports = {
     try {
       const { id } = req.params;
       const { titulo, anoLancamento, capa } = req.body;
+  
+      if (typeof capa !== 'string') {
+        return res.status(400).json({ error: "A capa deve ser uma string válida." });
+      }
 
       const disco = await Disco.findByPk(id);
       if (!disco) {
         return res.status(404).json({ error: "Disco não encontrado" });
       }
-
-      await disco.update({ titulo, anoLancamento, capa });
-      return res.status(200).json(disco);
+  
+      await disco.update({
+        titulo,
+        anoLancamento,
+        capa,  
+      });
+  
+      return res.redirect(`/discos/${id}`);
     } catch (error) {
       console.error(error);
       return res.status(500).json({ error: "Erro ao atualizar disco" });
     }
+    console.log(req.body)
   },
-  
+
   async delete(req, res) {
     try {
       const { id } = req.params;
 
       const disco = await Disco.findByPk(id);
       if (!disco) {
-        return res.status(404).json({ error: "Disco não encontrado" });
+        return res.status(404).send("Disco não encontrado.");
       }
 
+      await Faixa.destroy({ where: { disco_id: id } });
+
       await disco.destroy();
-      return res.status(200).json({ message: "Disco excluído com sucesso" });
+
+      return res.redirect("/discos");
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ error: "Erro ao excluir disco" });
+      return res.status(500).send("Erro ao excluir disco.");
     }
   },
 };
