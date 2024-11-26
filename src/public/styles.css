@@ -94,13 +94,12 @@ body {
     margin: 20px 0;
   }
 
-  /* Imagem da capa do álbum (details.ejs) */
 section img {
-    width: 200px; /* Largura fixa */
-    height: 200px; /* Altura fixa */
-    object-fit: cover; /* Mantém a proporção da imagem dentro das dimensões */
-    border-radius: 10px; /* Cantos arredondados */
-    margin: 10px auto; /* Espaçamento */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
+    width: 200px; 
+    height: 200px; 
+    object-fit: cover;
+    border-radius: 10px; 
+    margin: 10px auto; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
   
