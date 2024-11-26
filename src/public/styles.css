@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    font-family: 'Georgia', serif; 
+    background: #1d1d1d; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .container {
+    background: #e6ffec; 
+    color: #333333; 
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+    width: 90%;
+    padding: 20px 30px;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Palatino Linotype', 'Book Antiqua', serif;
+    color: #000000; 
+    margin-bottom: 10px;
+  }
+
+  p, li {
+    color: #333333; 
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  
+  button {
+    background: #1db954;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: #14843b;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #1db954;
+    font-weight: bold;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  input, button {
+    margin: 10px 0;
+  }
+  
+  form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: calc(100% - 22px);
+  }
+  
+  form button {
+    margin-top: 10px;
+  }
+  
+  img[src*="disco"] {
+    width: 300px; 
+    height: 300px;
+    object-fit: cover;
+    margin: 20px 0;
+  }
+
+  /* Imagem da capa do álbum (details.ejs) */
+section img {
+    width: 200px; /* Largura fixa */
+    height: 200px; /* Altura fixa */
+    object-fit: cover; /* Mantém a proporção da imagem dentro das dimensões */
+    border-radius: 10px; /* Cantos arredondados */
+    margin: 10px auto; /* Espaçamento */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para destacar */
+  }
+  
